@@ -11,6 +11,8 @@ public class ElectricityBillingSystem {
     private JButton CLEARButton;
     private JPanel main;
 
+    boolean pushit = true;
+
     public void print(){
         double unitPrice=0;
         String customerName = textCustomerName.getText();
@@ -58,13 +60,21 @@ public class ElectricityBillingSystem {
     okButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            print();
+            if(pushit == true){
+                print();
+                pushit = false;
+            }
+
         }
     });
         CLEARButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clear();
+                if (pushit == false){
+                    clear();
+                    pushit = true;
+                }
+
             }
         });
     }
